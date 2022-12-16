@@ -27,3 +27,4 @@ const jobsData = [
     modalities: ["Home Office", "Presencial"],
   },
 ];
+
