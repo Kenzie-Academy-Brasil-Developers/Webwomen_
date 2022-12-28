@@ -1,157 +1,149 @@
-//PRINCIPAL
-const tagMain = document.querySelector("main");
-const remuvebut = document.querySelector("removeBut");
+const asideJobs = []
 
-function CreateCards(jobsData) {
-  const titleMain = document.createElement("h2");
-  const tagSection = document.createElement("section");
-  const titleSection = document.createElement("h2");
-  const subtitleSection = document.createElement("div");
-  const school = document.createElement("h3");
-  const state = document.createElement("h3");
-  const descriptionSection = document.createElement("h3");
-  const typeCandidator = document.createElement("div");
-  const typeSection = document.createElement("h4");
-  const candidatorBut = document.createElement("button");
+function createMainList(){
+    let jsonData = JSON.parse(localStorage.getItem("appliedJobs")) || []
+    const listMain = document.querySelector('.oneCard_ul')
+    const asideListFull = document.querySelector('.crd2_ul')   
 
-  titleMain.classList.add("title_main");
-  tagSection.classList.add("section_1");
-  titleSection.classList.add("title_section");
-  subtitleSection.classList.add("subtitle_section");
-  school.classList.add("school");
-  state.classList.add("state");
-  descriptionSection.classList.add("description_section");
-  typeCandidator.classList.add("type_candidator");
-  typeSection.classList.add("type_section");
-  candidatorBut.classList.add("candidator");
+    jobsData.forEach(job => { 
+    const tags = document.createElement('li') 
+    const tagTitle = document.createElement('h2') 
+    const tagDivOne = document.createElement('div') 
+    const tagDiv1 = document.createElement('span') 
+    const tagDiv2 = document.createElement('span')  
+    const tagP = document.createElement('p') 
+    const tagDiv3 = document.createElement('div')
+    const tagDiv3Span = document.createElement('span') 
+    const tagDiv3Btn = document.createElement('button')
+ 
+   
+    tags.classList = 'oneCard_li column'
+    tagTitle.classList = 'oneCard_li_title title4' 
+    tagDivOne.classList = 'oneCard_li_div flex_row gap-1'
+    tagDiv1.classList = 'oneCard_li_div_span-1 text3' 
+    tagDiv2.classList = 'oneCard_li_div_span-1 text3'
+    tagP.classList = 'oneCard_li_div_p text2'
+    tagDiv3.classList = 'section-1_desktop'
+    tagDiv3Span.classList = 'oneCard_li_div_span-2 text3'
+    tagDiv3Btn.classList = 'oneCard_li_div_button button border_none button_add_card'
 
-  //STYLE BUTTON ADD, REMOVE
-  candidatorBut.innerText = "Remover Candidatura";
-  candidatorBut.style.width = "220px";
+    tagTitle.innerText = job.title
+    tagDiv1.innerText = job.enterprise
+    tagDiv2.innerText = job.location
+    tagP.innerText = job.description
+    tagDiv3Span.innerText = job.modalities[0]
 
-  
-  titleSection.innerText = jobsData.title;
-  school.innerText = jobsData.enterprise;
-  state.innerText = jobsData.location;
-  descriptionSection.innerText = jobsData.descrition;
-  typeSection.innerText = jobsData.modalities[0];
-  candidatorBut.innerText = "Candidatar";
-  candidatorBut.id = jobsData.id;
-
-  tagMain.append(titleMain, tagSection);
-  tagSection.append(
-    titleSection,
-    subtitleSection,
-    descriptionSection,
-    typeCandidator
-  );
-  subtitleSection.append(school, state);
-  typeCandidator.append(typeSection, candidatorBut);
-
-  return tagSection;
-}
-
-//FUNÇÃO LIST CARDS
-function listarCards(arr) {
-  arr.forEach((jobsData) => {
-    let CardProd = CreateCards(jobsData);
-    tagMain.append(CardProd);
-  });
-}
-listarCards(jobsData);
-
-//-------------------------------------------------------
-//ASIDE
-const vacancies = document.querySelector(".vacancies");
-
-function createCardsVacancies(jobsData) {
-  const sectionAside = document.createElement("section_aside");
-  const personDeveloper = document.createElement("person_developer");
-  const titlePersonDeveloper = document.createElement("title_person_developer");
-  const buttonTrash = document.createElement("button_trash");
-  const subtitleAside = document.createElement("subtitle_aside");
-  const tagSchool = document.createElement("school");
-  const tagState = document.createElement("state");
-
-  sectionAside.classList.add("section_aside");
-  personDeveloper.classList.add("person_developer");
-  titlePersonDeveloper.classList.add("title_person_developer");
-  buttonTrash.classList.add("button_trash");
-  buttonTrash.id = jobsData.id;
-  subtitleAside.classList.add("subtitle_aside");
-  tagSchool.classList.add("school");
-  tagState.classList.add("state");
-
-  //REMOVE TRASH
-  buttonTrash.addEventListener("click", () => {
-    document.getElementById(buttonTrash.id).innerText = "Candidatar";
-    sectionAside.remove();
-  });
-
-  titlePersonDeveloper.innerText = jobsData.title;
-  tagSchool.innerText = jobsData.enterprise;
-  tagState.innerText = jobsData.location;
-  sectionAside.id = jobsData.id;
-
-  tagMain.append(vacancies);
-  vacancies.append(sectionAside);
-  sectionAside.append(personDeveloper, subtitleAside);
-  personDeveloper.append(titlePersonDeveloper, buttonTrash);
-  subtitleAside.append(tagSchool, tagState);
-
-  return sectionAside;
-}
-
-// function listarCardsVacancies(arr2){
-
-//     arr2.forEach(jobsData => {
-//         let CardProdVacancies = createCardsVacancies(jobsData)
-//         vacancies.append(CardProdVacancies)
-//     });
-
-// }
-// listarCardsVacancies(jobsData)
-//----------------------------------------------------------------------
-
-//ADD,REMOVE
-function addRemoveEvent() {
-  let btn = document.querySelectorAll(".candidator");
-  btn.forEach((butt) => {
-    if (butt.innerText == "Candidatar") {
-      butt.removeEventListener("click", removeId);
-      butt.addEventListener("click", filterId);
-    } else if (butt.innerText == "Remover Candidatura") {
-      butt.removeEventListener("click", filterId);
-      butt.addEventListener("click", removeId);
+    if(jsonData.filter(element => element.title == job.title).length > 0){
+        tagDiv3Btn.innerText = 'Retirar candidatura'
+    }else{
+        tagDiv3Btn.innerText = 'Candidatar'
     }
-  });
+    
+    tagDiv3Btn.addEventListener('click', function(){ 
+        asideListFull.innerHTML = ''
 
-  //LOCAL STORAGE
-  localStorage.setItem('vagas selecionadas',JSON.stringify(jobsData))
+        if(tagDiv3Btn.innerText == 'Candidatar'){  
+            tagDiv3Btn.innerText = 'Retirar candidatura'
+            let newObject = {
+                id:job.id, 
+                title:job.title, 
+                enterprise:job.enterprise, 
+                location:job.location
+            }
+            asideJobs.push(newObject)
+            localStorage.setItem("appliedJobs", JSON.stringify(asideJobs))
+            renderAside(asideJobs) 
+        }else{
+            tagDiv3Btn.innerText = 'Candidatar' 
+            let indexAside = asideJobs.indexOf(job)
+            asideJobs.splice(indexAside, 1)
+            localStorage.setItem("appliedJobs", JSON.stringify(asideJobs))
+            renderAside(asideJobs)
+        }
+    })
+
+    tagDiv3.append(tagDiv3Span, tagDiv3Btn)
+    tagDivOne.append(tagDiv1, tagDiv2)
+    tags.append(tagTitle, tagDivOne, tagP, tagDiv3)
+    listMain.appendChild(tags)
+    });
+    return listMain
 }
 
+function createAside(asideList){
+    const asideListFull = document.querySelector('.crd2_ul')
+    const listMain = document.querySelector('.oneCard_ul')
+    asideList.forEach(job => {
+        const tags = document.createElement('li')
+        const tagsDivOne = document.createElement('div')
+        const tagsDivOneTitle = document.createElement('h2')
+        const tagsDivOneBtn = document.createElement('button')
+        const tagsDivOneBtnImg = document.createElement('img')
+        const tagsDivTwo = document.createElement('div')
+        const tagsDivTwoSpanOne = document.createElement('span')
+        const tagsDivTwoSpanTwo = document.createElement('span')
 
-//FILTER ID
-function filterId(event) {
-  event.target.innerText = "Remover Candidatura";
-  document.querySelector(".text-vancacies").innerHTML = "";
-  const filtered = jobsData.filter((element) => element.id == event.target.id);
-  const asideVacancie = createCardsVacancies(filtered[0]);
-  vacancies.appendChild(asideVacancie);
-  addRemoveEvent();
+        tags.classList = 'crd2_li column'
+        tagsDivOne.classList = 'crd2_div flex_row align_center justify_between'
+        tagsDivOneTitle.classList = 'crd2_li_title title5'
+        tagsDivOneBtn.classList = 'crd2_li_button'
+        tagsDivTwo.classList = 'crd2_div-2 flex_row gap-1'
+        tagsDivTwoSpanOne.classList = 'crd2_span text-3'
+        tagsDivTwoSpanTwo.classList = 'crd2_span text-3'
+
+        tagsDivOneTitle.innerText = job.title
+        tagsDivTwoSpanOne.innerText = job.enterprise
+        tagsDivTwoSpanTwo.innerText = job.location
+        tagsDivOneBtnImg.src = '../../assets/img/trash.svg'
+
+        tagsDivOneBtn.addEventListener('click', function(){
+            asideListFull.innerHTML = ''
+            listMain.innerHTML = ''
+            let indexAside = asideJobs.indexOf(job)
+            asideJobs.splice(indexAside, 1)
+            localStorage.setItem("appliedJobs", JSON.stringify(asideJobs))
+            renderMainList()
+            renderAside(asideJobs)
+        })
+
+        tagsDivTwo.append(tagsDivTwoSpanOne, tagsDivTwoSpanTwo)
+        tagsDivOneBtn.appendChild(tagsDivOneBtnImg)
+        tagsDivOne.append(tagsDivOneTitle, tagsDivOneBtn)
+        tags.append(tagsDivOne, tagsDivTwo)
+        asideListFull.appendChild(tags)
+    })
+    return asideListFull
 }
 
-//REMOVE ID
-function removeId(event) {
-  event.target.innerText = "Candidatar";
-  const sectionAside = document.querySelectorAll(".section_aside");
-  sectionAside.forEach((element) => {
-    console.log(element);
-    if (element.id == event.target.id) {
-      element.remove();
+function createAsideEmpty(){ 
+    const asideListFull = document.querySelector('.crd2_ul')
+    const asideEmpty = document.createElement('div') 
+    const emptyParagraph = document.createElement('p')
+
+    emptyParagraph.innerText = 'Você ainda não aplicou para nenhuma vaga!'
+    asideEmpty.appendChild(emptyParagraph)
+    asideListFull.appendChild(asideEmpty)
+    return asideListFull
+}
+
+function renderMainList(){
+    const mainSection = document.querySelector('#sectionOne')
+    return mainSection.appendChild(createMainList())
+}
+
+function renderAside(list){
+    const asideSection = document.querySelector('.crd2')
+    if(list.length == 0){
+        return asideSection.appendChild(createAsideEmpty())
+    }else{
+        return asideSection.appendChild(createAside(list))
     }
-  });
-  addRemoveEvent();
 }
-addRemoveEvent();
 
+function jsonItem(){
+    return JSON.parse(localStorage.getItem("appliedJobs")) || []
+}
+
+renderAside(jsonItem())
+
+renderMainList()

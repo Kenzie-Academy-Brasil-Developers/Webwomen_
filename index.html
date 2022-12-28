@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/renderCards.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="./styles/margin.css">
+    <link rel="stylesheet" href="./styles/buttons.css">
+    <link rel="stylesheet" href="./styles/borders.css">
+    <link rel="stylesheet" href="./styles/title.css">
+    <link rel="stylesheet" href="./styles/colors.css">
+    <link rel="stylesheet" href="./styles/displays.css">
+    <link rel="stylesheet" href="./styles/globalStyles.css">
+    <link rel="stylesheet" href="./pages/home/index.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <title>Webwomen</title>
+    <meta
+      name="description"
+      content="Está procurando oportunidades de estágio, emprego ou bolsas de estudo? 
+      Ou até mesmo oportunidades para atender eventos de tecnologia no Brasil 
+      e ao redor do mundo?"
+    />
+</head>
+<body class="body">
+  <header class="header">
+    <div class="container column start twogap">
+      <img class="logo" src="../../assets/img/logo.svg" alt="">
+      <h2 class="title color3 title1">Lugar de mulher é onde ela quiser!</h2>
+      <p class="pheader color3 text3">Está procurando oportunidades de estágio, emprego ou bolsas de estudo? 
+      Ou até mesmo oportunidades para atender eventos de tecnologia no Brasil e ao redor do mundo? 
+      </p>
+      <p class="ptext color3 title3">Confere aqui embaixo o que temos pra você!</p>
+      <button class="header_button button border border_none bheader"><a class="link" href="#vacancies">Ir para Seção das vagas</a></button>
+    </div>
+  </header>
+  <main class="container main twogap column">
+    <section id="sectionOne" class="oneCard column">
+      <h2 class="oneCard_title title-4">Vagas</h2>
+      <ul id="vacancies" class="oneCard_ul column gap-1">
+      </ul>
+    </section>
+    <section class="crd2 column">
+      <h2 class="crd2_title title-4">Vagas selecionadas</h2>
+      <ul class="crd2_ul column">
+      </ul>
+    </section>
+  </main>
+    <script src="/pages/home/jobsData.js"></script>
+    <script src="/pages/home/index.js"></script>
+</body>
+</html>

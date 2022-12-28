@@ -1,0 +1,19 @@
+.header{
+    min-height: 733px;
+    width: 100%;
+    background-image: url(../../assets/img/header-bg.svg);
+    background-position:center;
+    background-repeat: no-repeat;
+}
+
+.pheader{
+    color: var(--color-grey-5);
+    line-height: 2rem;
+    max-width: 900px;
+}
+
+.bheader{
+    width: 296px;
+    height: 48px;
+}
+

@@ -1,0 +1,11 @@
+.text_color-1{
+    color: var(--color-grey-1);
+}
+
+.text_color-2{
+    color: var(--color-grey-2);
+}
+
+.color3{
+    color: var(--color-grey-6);
+}

@@ -1,0 +1,11 @@
+.border{
+    border: 1px solid;
+}
+
+.border_transparent{
+    border-color: transparent;
+}
+
+.border_none{
+    border: none;
+}

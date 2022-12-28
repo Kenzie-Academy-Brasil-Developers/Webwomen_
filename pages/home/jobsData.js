@@ -4,7 +4,7 @@ const jobsData = [
     title: "Pessoa desenvolvedora front-end - React",
     enterprise: "Kenzie",
     location: "Curitiba",
-    descrition:
+    description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
     modalities: ["Hibrido", "Presencial"],
   },
@@ -13,7 +13,7 @@ const jobsData = [
     title: "Pessoa desenvolvedora back-end - Node JS",
     enterprise: "Brazilians in Tech",
     location: "Rio de Janeiro",
-    descrition:
+    description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
     modalities: ["Home Office", "Presencial"],
   },
@@ -22,9 +22,8 @@ const jobsData = [
     title: "Pessoa desenvolvedora Fullstack - Node JS",
     enterprise: "Brazilians in Tech",
     location: "Rio de Janeiro",
-    descrition:
+    description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
     modalities: ["Home Office", "Presencial"],
   },
 ];
-
